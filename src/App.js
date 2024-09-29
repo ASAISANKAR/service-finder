@@ -25,7 +25,7 @@ function App() {
             <Route path="/user" element={<ProtectedRoute component={UserProfile} role="user" />} />
             <Route path="/admin" element={<ProtectedRoute component={AdminDashboard} role="admin" />} />
             <Route path="/support" element={<ProtectedRoute component={CustomerSupport} role="support" />} />
-            <Route path="/professionals" element={<ProfessionalsList />} />
+            <Route path="/professionals" element={<ProtectedRoute component={ProfessionalsList}  role="user" />}  />
             <Route path="/professional" element={<ProtectedRoute component={ProfessionalProfile} role="professional" />} />
           </Routes>
         </Container>

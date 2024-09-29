@@ -34,7 +34,7 @@ function Navbar() {
           <Button color="inherit" component={Link} to="/support">Customer Support</Button>
         )}
         {role === 'professional' && (
-          <Button color="inherit" component={Link} to="/professional">Professional Services</Button>
+          <Button color="inherit" component={Link} to="/professional">Professional Profile</Button>
         )}
         {role && <Button color="inherit" onClick={handleLogout}>Logout</Button>}
         {!role && <Button color="inherit" component={Link} to="/login">Login</Button>}

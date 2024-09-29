@@ -1,30 +1,29 @@
-// src/components/ProfessionalProfile.js
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ProfessionalProfile = () => {
-  const { id } = useParams();
-  const [professional, setProfessional] = useState(null);
+const mockProfessionals = [
+  { id: '1', name: 'John Smith', services: 'Web Development, SEO' },
+  { id: '2', name: 'Jane Doe', services: 'Graphic Design, Branding' },
+  { id: '3', name: 'Sam Johnson', services: 'Content Writing, Copywriting' },
+  // Add more mock professionals as needed
+];
 
-  useEffect(() => {
-    const fetchProfessional = async () => {
-      const response = await axios.get(`/api/professionals/${id}`);
-      setProfessional(response.data);
-    };
-    fetchProfessional();
-  }, [id]);
-
-  if (!professional) return <div>Loading...</div>;
-
+const ProfessionalsList = () => {
   return (
     <div>
-      <h2>{professional.name}</h2>
-      <p>Services: {professional.services}</p>
-      {/* Add more details as necessary */}
-      
+      <h2>Professionals List</h2>
+      <ul>
+        {mockProfessionals.map((professional) => (
+          <li key={professional.id}>
+            <Link to={`/profile/${professional.id}`}>
+              <h3>{professional.name}</h3>
+              <p>Services: {professional.services}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default ProfessionalProfile;
+export default ProfessionalsList;

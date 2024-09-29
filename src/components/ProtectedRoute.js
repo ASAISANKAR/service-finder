@@ -5,7 +5,6 @@ import { useUser } from '../UserContext';
 
 const ProtectedRoute = ({ component: Component, role }) => {
   const { role: userRole } = useUser(); // Get the role from context
-
   return userRole === role ? <Component /> : <Navigate to="/login" />;
 };
 
