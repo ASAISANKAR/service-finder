@@ -1,46 +1,28 @@
+// src/components/AdminDashboard.js
 import React, { useState } from 'react';
-import { AppBar, Tabs, Tab, Typography, Box } from '@mui/material';
 import UserManagement from './UserManagement';
 import ServiceManagement from './ServiceManagement';
 import RoleManagement from './RoleManagement';
-
-const TabPanel = ({ children, value, index }) => {
-  return (
-    <div role="tabpanel" hidden={value !== index}>
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
+import ProfessionalsList from './ProfessionalsList';
+import { Button } from '@mui/material';
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setActiveTab(newValue);
-  };
+  const [activeTab, setActiveTab] = useState('users');
 
   return (
     <div>
-      <AppBar position="static" color="primary">
-        <Tabs value={activeTab} onChange={handleChange} centered>
-          <Tab label="Manage Users" />
-          <Tab label="Manage Services" />
-          <Tab label="Manage Roles" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={activeTab} index={0}>
-        <UserManagement />
-      </TabPanel>
-      <TabPanel value={activeTab} index={1}>
-        <ServiceManagement />
-      </TabPanel>
-      <TabPanel value={activeTab} index={2}>
-        <RoleManagement />
-      </TabPanel>
+      <h2>Admin Dashboard</h2>
+      <nav>
+        <Button variant="contained" onClick={() => setActiveTab('users')}>Manage Users</Button>
+        <Button variant="contained" onClick={() => setActiveTab('services')}>Manage Services</Button>
+        <Button variant="contained" onClick={() => setActiveTab('roles')}>Manage Roles</Button>
+        <Button variant="contained" onClick={() => setActiveTab('professionals')}>View Professionals</Button>
+      </nav>
+      <hr />
+      {activeTab === 'users' && <UserManagement />}
+      {activeTab === 'services' && <ServiceManagement />}
+      {activeTab === 'roles' && <RoleManagement />}
+      {activeTab === 'professionals' && <ProfessionalsList />}
     </div>
   );
 };

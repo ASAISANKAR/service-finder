@@ -1,15 +1,12 @@
+// src/components/ProtectedRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 
-const ProtectedRoute = ({ role, component: Component }) => {
-  const { role: userRole } = useUser();
+const ProtectedRoute = ({ component: Component, role }) => {
+  const { role: userRole } = useUser(); // Get the role from context
 
-  if (userRole !== role) {
-    return <Navigate to="/login" />;
-  }
-
-  return <Component />;
+  return userRole === role ? <Component /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoute;

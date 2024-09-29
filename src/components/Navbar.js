@@ -1,13 +1,15 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 
 function Navbar() {
   const { role, setRole } = useUser();
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
   const handleLogout = () => {
     setRole(null); 
+    navigate('/login'); // Redirect to login after logout
   };
 
   return (
@@ -17,12 +19,17 @@ function Navbar() {
           My Application
         </Typography>
         <Button color="inherit" component={Link} to="/">Search</Button>
+        
         {role === 'admin' && (
           <Button color="inherit" component={Link} to="/admin">Admin Dashboard</Button>
         )}
         {role === 'user' && (
           <Button color="inherit" component={Link} to="/user">User Profile</Button>
         )}
+        {role === 'user' && (
+           <Button color="inherit" component={Link} to="/professionals">View Professionals</Button> 
+        )}
+
         {role === 'support' && (
           <Button color="inherit" component={Link} to="/support">Customer Support</Button>
         )}

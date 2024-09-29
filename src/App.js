@@ -10,6 +10,7 @@ import UserProfile from './components/UserProfile';
 import AdminDashboard from './components/AdminDashboard';
 import CustomerSupport from './components/CustomerSupport';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProfessionalsList from './components/ProfessionalsList';
 
 function App() {
   return (
@@ -21,10 +22,11 @@ function App() {
             <Route path="/" element={<Search />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile/:id" element={<ProfessionalProfile />} />
-            <Route path="/user" element={<ProtectedRoute role="user" component={UserProfile} />} />
-            <Route path="/admin" element={<ProtectedRoute role="admin" component={AdminDashboard} />} />
-            <Route path="/support" element={<ProtectedRoute role="support" component={CustomerSupport} />} />
-            <Route path="/professional" element={<ProtectedRoute role="professional" component={ProfessionalProfile} />} />
+            <Route path="/user" element={<ProtectedRoute component={UserProfile} role="user" />} />
+            <Route path="/admin" element={<ProtectedRoute component={AdminDashboard} role="admin" />} />
+            <Route path="/support" element={<ProtectedRoute component={CustomerSupport} role="support" />} />
+            <Route path="/professionals" element={<ProfessionalsList />} />
+            <Route path="/professional" element={<ProtectedRoute component={ProfessionalProfile} role="professional" />} />
           </Routes>
         </Container>
       </Router>
